@@ -1,19 +1,21 @@
 package com.company;
 
 //import java.util.ArrayList;
+
 import java.util.Scanner;
 
-class StringCalculator{
-    public static int Add(String numbers){
-        if (numbers.length()==0) {return 0;}
-        else {
-            if (numbers.indexOf(",")!=-1) {
-                int ind = numbers.indexOf(",");
-                String a = numbers.substring(0, ind);
-                String b = numbers.substring(ind+1);
-                return Integer.parseInt(a.trim())+Integer.parseInt(b.trim());
+class StringCalculator {
+    public static int Add(String numbers) {
+        if (numbers.length() == 0) {
+            return 0;
+        } else {
+            int s = 0;
+            while (numbers.contains(",")) {
+                String number = numbers.substring(0, numbers.indexOf(","));
+                numbers = numbers.substring(numbers.indexOf(",") + 1);
+                s += Integer.parseInt(number.trim());
             }
-            else return Integer.parseInt(numbers.trim());
+             return s+Integer.parseInt(numbers.trim());
         }
     }
 
