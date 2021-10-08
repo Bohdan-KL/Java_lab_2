@@ -6,6 +6,7 @@ import java.util.Scanner;
 
 class StringCalculator {
     public static int Add(String numbers) {
+        numbers = numbers.replaceAll("\\\\n", ",");
         if (numbers.length() == 0) {
             return 0;
         } else {
