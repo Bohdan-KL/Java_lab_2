@@ -24,13 +24,24 @@ class StringCalculator {
             return 0;
         } else {
             int s = 0;
+            boolean error_negative_number = false;
             while (numbers.contains(delimiter)) {
                 String number = numbers.substring(0, numbers.indexOf(delimiter));
                 numbers = numbers.substring(numbers.indexOf(delimiter) + delimiter.length());
+                if (number.startsWith("-") && !error_negative_number ){
+                    System.out.println("Negatives not allowed!");
+                    error_negative_number = true;}
+                if (number.startsWith("-")) System.out.print("("+number+" ");
                 s += Integer.parseInt(number.trim());
             }
-            if (numbers.length()>0) s+=Integer.parseInt(numbers.trim());
-             return s;
+            if (numbers.startsWith("-") && !error_negative_number ){
+                System.out.println("Negatives not allowed!");
+                System.out.println("("+numbers+")"); }
+            if (numbers.startsWith("-") && error_negative_number )
+                System.out.println(numbers+")");
+            s += Integer.parseInt(numbers.trim());
+            if (error_negative_number) return -1;
+            else return s;
         }
     }
 
@@ -51,6 +62,6 @@ public class Main {
         System.out.print("Write your data: ");
         String data = in.nextLine();
         int result = StringCalculator.Add(data);
-        System.out.println(result);
+        if (result>=0) System.out.println(result);
     }
 }
