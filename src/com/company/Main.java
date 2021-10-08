@@ -32,6 +32,7 @@ class StringCalculator {
                     System.out.println("Negatives not allowed!");
                     error_negative_number = true;}
                 if (number.startsWith("-")) System.out.print("("+number+" ");
+                if (Integer.parseInt(number.trim())>=1000) continue;
                 s += Integer.parseInt(number.trim());
             }
             if (numbers.startsWith("-") && !error_negative_number ){
@@ -39,7 +40,8 @@ class StringCalculator {
                 System.out.println("("+numbers+")"); }
             if (numbers.startsWith("-") && error_negative_number )
                 System.out.println(numbers+")");
-            s += Integer.parseInt(numbers.trim());
+            if (Integer.parseInt(numbers.trim())<1000)
+                s += Integer.parseInt(numbers.trim());
             if (error_negative_number) return -1;
             else return s;
         }
