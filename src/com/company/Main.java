@@ -1,7 +1,5 @@
 package com.company;
 
-//import java.util.ArrayList;
-
 import java.util.Scanner;
 
 class StringCalculator {
@@ -9,15 +7,15 @@ class StringCalculator {
 
         String delimiter;
 
-        if (numbers.startsWith("//")){
+        if (numbers.startsWith("//")) {
             delimiter = numbers.substring(2, numbers.indexOf("\\n"));
-            numbers = numbers.substring(numbers.indexOf("\\n")+2);}
-        else  delimiter = ",";
+            numbers = numbers.substring(numbers.indexOf("\\n") + 2);
+        } else delimiter = ",";
 
 
         numbers = numbers.replaceAll("\\\\n", delimiter);
-        while (numbers.contains(delimiter+delimiter))
-            numbers = numbers.replace(delimiter+delimiter,delimiter);
+        while (numbers.contains(delimiter + delimiter))
+            numbers = numbers.replace(delimiter + delimiter, delimiter);
 
 
         if (numbers.length() == 0) {
@@ -28,19 +26,21 @@ class StringCalculator {
             while (numbers.contains(delimiter)) {
                 String number = numbers.substring(0, numbers.indexOf(delimiter));
                 numbers = numbers.substring(numbers.indexOf(delimiter) + delimiter.length());
-                if (number.startsWith("-") && !error_negative_number ){
+                if (number.startsWith("-") && !error_negative_number) {
                     System.out.println("Negatives not allowed!");
-                    error_negative_number = true;}
-                if (number.startsWith("-")) System.out.print("("+number+" ");
-                if (Integer.parseInt(number.trim())>=1000) continue;
+                    error_negative_number = true;
+                }
+                if (number.startsWith("-")) System.out.print("(" + number + " ");
+                if (Integer.parseInt(number.trim()) >= 1000) continue;
                 s += Integer.parseInt(number.trim());
             }
-            if (numbers.startsWith("-") && !error_negative_number ){
+            if (numbers.startsWith("-") && !error_negative_number) {
                 System.out.println("Negatives not allowed!");
-                System.out.println("("+numbers+")"); }
-            if (numbers.startsWith("-") && error_negative_number )
-                System.out.println(numbers+")");
-            if (Integer.parseInt(numbers.trim())<1000)
+                System.out.println("(" + numbers + ")");
+            }
+            if (numbers.startsWith("-") && error_negative_number)
+                System.out.println(numbers + ")");
+            if (Integer.parseInt(numbers.trim()) < 1000)
                 s += Integer.parseInt(numbers.trim());
             if (error_negative_number) return -1;
             else return s;
@@ -64,6 +64,6 @@ public class Main {
         System.out.print("Write your data: ");
         String data = in.nextLine();
         int result = StringCalculator.Add(data);
-        if (result>=0) System.out.println(result);
+        if (result >= 0) System.out.println(result);
     }
 }
