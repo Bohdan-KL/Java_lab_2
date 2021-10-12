@@ -43,7 +43,7 @@ class StringCalculator {
     }
 
 
-    public static int Add(String numbers) {
+    public static float Add(String numbers) {
         /*
          *   Function for add numbers
          *   input: numbers - string what user write to console
@@ -90,7 +90,8 @@ class StringCalculator {
 
 
             // initializing sum value, error value and getting delimiters count
-            int s = 0, delimiter_count = 0;
+            float s = 0;
+            int delimiter_count = 0;
             boolean error_negative_number = false;
             for (String delimiter : delimiters)
                 delimiter_count += delimiter_count(numbers, delimiter);
@@ -116,11 +117,11 @@ class StringCalculator {
                     error_negative_number = true;
                 }
                 if (number.startsWith("-")) System.out.print("(" + number + " ");
-                if (Integer.parseInt(number.trim()) >= 1000) continue;
+                if (Float.parseFloat(number.trim()) >= 1000) continue;
 
 
                 //sum numbers and change delimiter count
-                s += Integer.parseInt(number.trim());
+                s += Float.parseFloat(number.trim());
                 delimiter_count -= 1;
             }
 
@@ -131,8 +132,8 @@ class StringCalculator {
             }
             if (numbers.startsWith("-") && error_negative_number)
                 System.out.println(numbers + ")");
-            if (Integer.parseInt(numbers.trim()) < 1000)
-                s += Integer.parseInt(numbers.trim());
+            if (Float.parseFloat(numbers.trim()) < 1000)
+                s += Float.parseFloat(numbers.trim());
 
             //checking what return
             if (error_negative_number) return -1;
@@ -161,7 +162,7 @@ public class Main {
 
 
         // checking and printing result
-        int result = StringCalculator.Add(data);
+        float result = StringCalculator.Add(data);
         if (result >= 0) System.out.println("The sum: " + result);
     }
 }
